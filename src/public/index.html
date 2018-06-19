@@ -14,16 +14,133 @@
   <body>
     <div class="uk-container uk-container-small">
       <h3 class="uk-text-large uk-text-center">S3 Clone</h3>
-      <form id="form">
-        <select class="uk-select">
-          <option></option>
-          <option></option>
-        </select>
-        <textarea class="uk-textarea"></textarea>
-        <input class="uk-radio" type="radio">
-        <input class="uk-checkbox" type="checkbox">
-        <input class="uk-range" type="range">
-      </form>
+      <ul class="uk-child-width-expand" uk-tab>
+        <li class="uk-active">
+          <a href="#">Upload</a>
+        </li>
+        <li>
+          <a href="#">Download</a>
+        </li>
+        <li>
+          <a href="#">Metadata</a>
+        </li>
+        <li>
+          <a href="#">Modify</a>
+        </li>
+        <li>
+          <a>Delete</a>
+        </li>
+      </ul>
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-text">User token</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" id="user" placeholder="Anonymous">
+        </div>
+      </div>
+      <ul class="uk-switcher uk-margin">
+        <li>
+          <!-- Upload -->
+          <form class="uk-form-stacked">
+            <div class="uk-margin">
+              <div uk-form-custom>
+                <input type="file">
+                <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                  Select File
+                </button>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">File path</label>
+              <div class="uk-form-controls">
+                <input class="uk-input" type="text" name="file">
+              </div>
+            </div>
+            <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+              <label>
+                <input class="uk-checkbox" name="public" type="checkbox">
+                Public
+              </label>
+            </div>
+            <button class="uk-button uk-button-primary" type="submit">
+              Upload
+            </button>
+          </form>
+        </li>
+        <li>
+          <!-- Download -->
+          <form class="uk-form-stacked">
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">File path</label>
+              <div class="uk-form-controls">
+                <input class="uk-input" type="text" name="file">
+              </div>
+            </div>
+            <button class="uk-button uk-button-primary" type="submit">
+              Download
+            </button>
+          </form>
+        </li>
+        <li>
+          <!-- Metadata -->
+          <form class="uk-form-stacked">
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">File path</label>
+              <div class="uk-form-controls">
+                <input class="uk-input" type="text" name="file">
+              </div>
+            </div>
+            <button class="uk-button uk-button-primary" type="submit">
+              Show
+            </button>
+          </form>
+        </li>
+        <li>
+          <!-- Modify -->
+          <form class="uk-form-stacked">
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">File path</label>
+              <div class="uk-form-controls">
+                <input class="uk-input" type="text" name="file">
+              </div>
+            </div>
+            <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+              <label>
+                <input class="uk-checkbox" name="public" type="checkbox">
+                Public
+              </label>
+            </div>
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">User token</label>
+              <div class="uk-form-controls">
+                <input class="uk-input" type="text" name="user">
+              </div>
+            </div>
+            <button class="uk-button uk-button-primary" type="submit">
+              Update
+            </button>
+          </form>
+        </li>
+        <li>
+          <!-- Delete -->
+          <form class="uk-form-stacked">
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">File path</label>
+              <div class="uk-form-controls">
+                <input class="uk-input" type="text" name="file">
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">User token</label>
+              <div class="uk-form-controls">
+                <input class="uk-input" type="text" name="user">
+              </div>
+            </div>
+            <button class="uk-button uk-button-primary" type="submit">
+              Delete
+            </button>
+          </form>
+        </li>
+      </ul>
     </div>
   </body>
 </html>
