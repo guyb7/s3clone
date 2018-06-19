@@ -19,6 +19,7 @@ module.exports = async req => {
     owner: req.params.bucket,
     bucket: req.params.bucket,
     filepath: req.params['0'],
+    filename: req.files.file.name,
     isPublic: req.query.public === 'true',
     tempPath: req.files.file.path,
     createdAt: now
@@ -26,9 +27,6 @@ module.exports = async req => {
   const fileKey = file.getKey()
   await Storage.write(id, tempFile)
   await RedisClient.setAsync(REDIS_FILE_KEY + fileKey, JSON.stringify(file.getMetadata()))
-  console.log('id', id)
-  console.log('fileKey', fileKey)
-  console.log('meta', file.getMetadata())
   return {
     id,
     fileKey

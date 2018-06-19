@@ -43,3 +43,27 @@ uploadEl.addEventListener('submit', async e => {
     console.error(e)
   }
 })
+
+const downloadEl = document.getElementById('download')
+downloadEl.addEventListener('submit', async e => {
+  e.preventDefault()
+  const form = parseForm(e)
+  try {
+    const url = `/api/${form.file}`
+    const res = await axios({
+      method: 'get',
+      url,
+      headers: {
+        'X-AUTH': form.user
+      },
+      responseType: 'blob'
+    })
+    const blob = new Blob([res.data])
+    const link = document.createElement('a')
+    link.href = window.URL.createObjectURL(blob)
+    link.download = res.headers['x-filename']
+    link.click()
+  } catch (e) {
+    console.error(e)
+  }
+})

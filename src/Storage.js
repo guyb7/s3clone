@@ -28,8 +28,13 @@ write = async (id, data) => {
   await writeFile(path.join(STORAGE_DIR, id), data)
 }
 
+getFilePath = async id => {
+  return path.join(STORAGE_DIR, id)
+}
+
 module.exports = {
   init,
   read,
-  write
+  write,
+  getFilePath
 }

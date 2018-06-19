@@ -26,6 +26,11 @@ const errors = {
     id: 13,
     code: 400,
     message: 'The provided parameters are invalid'
+  },
+  'file-not-found': {
+    id: 14,
+    code: 404,
+    message: 'This file does not exist'
   }
 }
 

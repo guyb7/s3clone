@@ -15,10 +15,15 @@ const asyncMiddleware = promise => {
   return (req, res) => {
     promise(req)
       .then(data => {
-        res.json({
-          success: true,
-          ...data
-        })
+        if (data.isDownload === true) {
+          res.set('x-filename', data.filename)
+          res.download(data.path, data.filename)
+        } else {
+          res.json({
+            success: true,
+            ...data
+          })
+        }
       })
       .catch(e => {
         parseError(res, e)
@@ -29,6 +34,7 @@ const asyncMiddleware = promise => {
 module.exports = app => {
   app.get('/api/status', asyncMiddleware(status))
 
+  app.get('/api/:id', asyncMiddleware(getFile))
   app.get('/api/:bucket/*', asyncMiddleware(getFile))
   app.post('/api/:bucket/*', multipartMiddleware, asyncMiddleware(uploadFile))
   app.put('/api/:bucket/*', asyncMiddleware(updateMetadata))

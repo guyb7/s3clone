@@ -4,6 +4,7 @@ class File {
     bucket,
     owner,
     filepath,
+    filename,
     isPublic,
     tempPath,
     createdAt,
@@ -14,6 +15,7 @@ class File {
     this.owner = owner
     this.bucket = bucket
     this.filepath = filepath
+    this.filename = filename
     this.isPublic = !!isPublic
     this.publicPath = bucket + '/' + filepath
     this.createdAt = createdAt
@@ -31,6 +33,7 @@ class File {
       owner: this.owner,
       bucket: this.bucket,
       filepath: this.filepath,
+      filename: this.filename,
       isPublic: this.isPublic,
       createdAt: this.createdAt,
       modifiedAt: this.modifiedAt,
