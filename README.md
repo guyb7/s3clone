@@ -2,10 +2,12 @@
 A simple storage service for arbitrary objects.
 
 ## Install
-Developed and tested on node version 10.4.1, yarn version 1.6.0, redis version 4.0.2
+Developed and tested on node version 10.4.1, yarn version 1.7.0, redis version 4.0.2.
+The client was tested on latest Chrome.
 * `git clone`
 * `yarn install`
 * `yarn start`
+The server will run on [localhost:3033](http://localhost:3033/).
 
 ## API
 
@@ -59,4 +61,4 @@ DELETE /file/path/file.txt
 * access/activity log - showing only last change time
 * bucket = user
 * errors/monitoring
-* build server/client
+* build server/client + SSR
