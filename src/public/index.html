@@ -40,19 +40,13 @@
       <ul class="uk-switcher uk-margin">
         <li>
           <!-- Upload -->
-          <form class="uk-form-stacked">
+          <form id="upload" class="uk-form-stacked">
             <div class="uk-margin">
               <div uk-form-custom>
-                <input type="file">
+                <input name="file" type="file">
                 <button class="uk-button uk-button-default" type="button" tabindex="-1">
                   Select File
                 </button>
-              </div>
-            </div>
-            <div class="uk-margin">
-              <label class="uk-form-label" for="form-stacked-text">File path</label>
-              <div class="uk-form-controls">
-                <input class="uk-input" type="text" name="file">
               </div>
             </div>
             <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
@@ -109,12 +103,6 @@
                 Public
               </label>
             </div>
-            <div class="uk-margin">
-              <label class="uk-form-label" for="form-stacked-text">User token</label>
-              <div class="uk-form-controls">
-                <input class="uk-input" type="text" name="user">
-              </div>
-            </div>
             <button class="uk-button uk-button-primary" type="submit">
               Update
             </button>
@@ -127,12 +115,6 @@
               <label class="uk-form-label" for="form-stacked-text">File path</label>
               <div class="uk-form-controls">
                 <input class="uk-input" type="text" name="file">
-              </div>
-            </div>
-            <div class="uk-margin">
-              <label class="uk-form-label" for="form-stacked-text">User token</label>
-              <div class="uk-form-controls">
-                <input class="uk-input" type="text" name="user">
               </div>
             </div>
             <button class="uk-button uk-button-primary" type="submit">

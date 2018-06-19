@@ -63,3 +63,6 @@ DELETE /file/path/file.txt
 * build server/client + SSR
 * .env is not in .gitignore for demonstration
 * tests
+* coupling to Redis, missing abstraction
+* resolve uuid collisions
+* allowing both public/private paths will require data duplication

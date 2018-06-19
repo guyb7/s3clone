@@ -29,10 +29,10 @@ const asyncMiddleware = promise => {
 module.exports = app => {
   app.get('/api/status', asyncMiddleware(status))
 
-  app.get('/api/:bucket/:path', asyncMiddleware(getFile))
-  app.post('/api/:bucket/:path', asyncMiddleware(updateMetadata))
-  app.put('/api/:bucket/:path', multipartMiddleware, asyncMiddleware(uploadFile))
-  app.delete('/api/:bucket/:path', asyncMiddleware(deleteFile))
+  app.get('/api/:bucket/*', asyncMiddleware(getFile))
+  app.post('/api/:bucket/*', multipartMiddleware, asyncMiddleware(uploadFile))
+  app.put('/api/:bucket/*', asyncMiddleware(updateMetadata))
+  app.delete('/api/:bucket/*', asyncMiddleware(deleteFile))
 
   app.get('/api/*', notFound)
   app.use(serverError)

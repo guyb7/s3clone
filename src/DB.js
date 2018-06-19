@@ -1,4 +1,8 @@
 const redis = require('redis')
+const bluebird = require('bluebird')
+
+bluebird.promisifyAll(redis.RedisClient.prototype)
+bluebird.promisifyAll(redis.Multi.prototype)
 
 const redisHost = process.env.REDIS_HOST
 const redisPort = process.env.REDIS_PORT || 6380
