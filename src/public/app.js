@@ -38,7 +38,6 @@ uploadEl.addEventListener('submit', async e => {
   try {
     const url = `/api/${form.user}/${form.file.file.name}?${form.public ? 'public=true' : ''}`
     const res = await axios.post(url, data)
-    console.log(res)
   } catch (e) {
     console.error(e)
   }

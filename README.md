@@ -6,7 +6,10 @@ Developed and tested on node version 10.4.1, yarn version 1.7.0, redis version 4
 The client was tested on latest Chrome.
 * `git clone`
 * `yarn install`
+* Set `.env` variables 
+* Make sure Redis is available 
 * `yarn start`
+
 The server will run on [localhost:3033](http://localhost:3033/).
 
 ## API
