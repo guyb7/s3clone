@@ -1,0 +1,38 @@
+1. File upload​ - allow to upload any kind of files. File can be PUBLIC ​or PRIVATE
+  a. If Public - allow to download by real file name (file names aren’t unique​). For
+Example http://localhost:8080/.../Archive.zip will allow to download a specific Archive.zip file (Other files with the same name can exist).
+  b. If Private - allow to download by unique string and authentication header check.
+For example; GET request to /dDFewFG32dz​ with X-AUTH=”sjdnfsdFE32ss”
+header will allow to download Archive.zip file.
+
+2. Show metadata​ - adding ?metadata=true​ to the GET request URL will return json with
+2 keys; file name, file size and modification date. If the file was deleted, it should also
+contain deletion date as well.
+
+3. Modify file​ - File’s owner should be able to change its visibility from PUBLIC to
+PRIVATE and the opposite.
+
+4. Delete file​ - File’s owner should be able to delete any of his files. Any traffic that
+requests the deleted file will be redirected to a 404 page (Except for metadata request -
+see above).
+Use predefined unique tokens as users. For example; User 1 = qAzef32F, User 2 =
+hT9Lmdx. No need to create tokens generator.
+
+Notes:
+1. Security is IMPORTANT. ​For the assignment you can assume that the token is private
+and secure enough (in case no one else knows it) - just don’t expose private files to non
+allowed developers.
+
+2. If you have a time limit, prioritize right - it’s much better to have a bicycle than a
+wheel-less car.
+
+3. Code standards and comments are always welcomed.
+
+4. Choose the right HTTP methods for different functions.
+
+5. If you have some papers or planning documents, attach them - it will help us to
+understand that way you think. But don’t waste your time to write one of those
+specially for us.
+
+6. Any front-end will work - React application, a simple HTML upload form or even
+Postman.
