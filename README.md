@@ -10,7 +10,6 @@ The client was tested on latest Chrome.
 The server will run on [localhost:3033](http://localhost:3033/).
 
 ## API
-
 Base URL: `/api`
 
 Upload a file
@@ -62,3 +61,5 @@ DELETE /file/path/file.txt
 * bucket = user
 * errors/monitoring
 * build server/client + SSR
+* .env is not in .gitignore for demonstration
+* tests

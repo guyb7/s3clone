@@ -1,7 +1,10 @@
+require('dotenv').config()
+
+const DB = require('./DB')
 const express = require('express')
 const mountRoutes = require('./api/routes/')
 
-const PORT = 3033
+const { PORT } = process.env || 3033
 
 const app = express()
 mountRoutes(app)
