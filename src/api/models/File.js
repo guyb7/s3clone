@@ -1,10 +1,11 @@
 class File {
-  constructor({
+  constructor ({
     id,
     bucket,
     owner,
     filepath,
     filename,
+    filesize,
     isPublic,
     tempPath,
     createdAt,
@@ -16,6 +17,7 @@ class File {
     this.bucket = bucket
     this.filepath = filepath
     this.filename = filename
+    this.filesize = filesize
     this.isPublic = !!isPublic
     this.publicPath = bucket + '/' + filepath
     this.createdAt = createdAt
@@ -23,17 +25,18 @@ class File {
     this.deletedAt = deletedAt
   }
 
-  getKey() {
+  getKey () {
     return this.isPublic ? this.publicPath : this.id
   }
 
-  getMetadata() {
+  getMetadata () {
     return {
       id: this.id,
       owner: this.owner,
       bucket: this.bucket,
       filepath: this.filepath,
       filename: this.filename,
+      filesize: this.filesize,
       isPublic: this.isPublic,
       createdAt: this.createdAt,
       modifiedAt: this.modifiedAt,
