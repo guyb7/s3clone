@@ -17,35 +17,35 @@ Base URL: `/api`
 
 Upload a file
 ```
-POST /file/path/file.txt
-POST /file/path/file.txt?private=true -> dDFewFG32dz
+POST /bucket/path/file.txt
+POST /bucket/path/file.txt?public=false
 ```
 
 Download a file
 ```
-GET /file/path/file.txt
-GET /file/path/file.txt?metadata=true
+GET /bucket/path/file.txt
+GET /bucket/path/file.txt?metadata=true
 GET /dDFewFG32dz X-AUTH="sjdnfsdFE32ss"
 ```
 
 Update visibility
 ```
-PUT /file/path/file.txt { "private": true }
-PUT /dDFewFG32dz?private=false X-AUTH="sjdnfsdFE32ss" { "private": false }
+PUT /bucket/path/file.txt?public=false
+PUT /dDFewFG32dz?public=true X-AUTH="sjdnfsdFE32ss"
 ```
 
 Delete a file
 ```
-DELETE /file/path/file.txt
+DELETE /dDFewFG32dz?private=false X-AUTH="sjdnfsdFE32ss"
 ```
 
 ## Metadata Structure
 ```json
 {
-  "id": "dDFewFG32dz", // guid
+  "id": "dDFewFG32dz",
   "fileName": "file.txt",
   "filePath": "/file/path/file.txt",
-  "fileSize": 1892, // in bytes
+  "fileSize": 1892,
   "owner": "qAzef32F",
   "isDeleted": false,
   "isPrivate": false,
@@ -58,17 +58,15 @@ DELETE /file/path/file.txt
 ## Considerations
 * sync DB with disk
 * storage is local disk - to scale we need network storage
-* backups and integrity - RAID?
 * versioning - cannot modify at the moment
 * access/activity log - showing only last change time
 * bucket = user
-* errors/monitoring
 * build server/client + SSR
 * .env is not in .gitignore for demonstration
-* tests
+* no tests
 * coupling to Redis, missing abstraction
 * resolve uuid collisions
 * allowing both public/private paths will require data duplication
-* file type detection
-* allow multiple files with the same public path?
+* no file type detection
+* allowing multiple files with the same public path for the same user
 * changing visibility changes URL, which is awkward
