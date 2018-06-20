@@ -70,3 +70,4 @@ DELETE /dDFewFG32dz?private=false X-AUTH="sjdnfsdFE32ss"
 * no file type detection
 * allowing multiple files with the same public path for the same user
 * changing visibility changes URL, which is awkward
+* user tokens aren't in DB for demonstration

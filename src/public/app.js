@@ -29,9 +29,17 @@ uploadEl.addEventListener('submit', async e => {
   data.append('file', form.file.file)
   try {
     const url = `/api/${form.user}/${form.file.file.name}?${form.public ? 'public=true' : ''}`
-    await axios.post(url, data)
+    const res = await axios({
+      method: 'post',
+      url,
+      data,
+      headers: {
+        'X-AUTH': form.user
+      }
+    })
+    showOutput(res)
   } catch (e) {
-    console.error(e)
+    showError(e)
   }
 })
 
@@ -55,7 +63,29 @@ downloadEl.addEventListener('submit', async e => {
     link.download = res.headers['x-filename']
     link.click()
   } catch (e) {
-    console.error(e)
+    showError(e)
+  }
+})
+
+const metadataEl = document.getElementById('metadata')
+metadataEl.addEventListener('submit', async e => {
+  e.preventDefault()
+  const form = parseForm(e)
+  try {
+    const url = `/api/${form.file}`
+    const res = await axios({
+      method: 'get',
+      url,
+      headers: {
+        'X-AUTH': form.user
+      },
+      params: {
+        metadata: 'true'
+      }
+    })
+    showOutput(res)
+  } catch (e) {
+    showError(e)
   }
 })
 
@@ -65,7 +95,7 @@ modifyEl.addEventListener('submit', async e => {
   const form = parseForm(e)
   try {
     const url = `/api/${form.file}`
-    await axios({
+    const res = await axios({
       method: 'put',
       url,
       params: {
@@ -75,8 +105,9 @@ modifyEl.addEventListener('submit', async e => {
         'X-AUTH': form.user
       }
     })
+    showOutput(res)
   } catch (e) {
-    console.error(e)
+    showError(e)
   }
 })
 
@@ -86,14 +117,23 @@ deleteEl.addEventListener('submit', async e => {
   const form = parseForm(e)
   try {
     const url = `/api/${form.file}`
-    await axios({
+    const res = await axios({
       method: 'delete',
       url,
       headers: {
         'X-AUTH': form.user
       }
     })
+    showOutput(res)
   } catch (e) {
-    console.error(e)
+    showError(e)
   }
 })
+
+const showError = e => {
+  console.error(e)
+}
+
+const showOutput = data => {
+  console.log(data)
+}
