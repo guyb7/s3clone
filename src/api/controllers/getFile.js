@@ -19,6 +19,9 @@ module.exports = async req => {
       metadata
     }
   }
+  if (metadata.deletedAt !== null) {
+    throw new Error('file-removed')
+  }
   const filePath = await Storage.getFilePath(metadata.id)
   return {
     isDownload: true,

@@ -65,7 +65,7 @@ modifyEl.addEventListener('submit', async e => {
   const form = parseForm(e)
   try {
     const url = `/api/${form.file}`
-    const res = await axios({
+    await axios({
       method: 'put',
       url,
       params: {
@@ -75,7 +75,24 @@ modifyEl.addEventListener('submit', async e => {
         'X-AUTH': form.user
       }
     })
-    console.log(res)
+  } catch (e) {
+    console.error(e)
+  }
+})
+
+const deleteEl = document.getElementById('delete')
+deleteEl.addEventListener('submit', async e => {
+  e.preventDefault()
+  const form = parseForm(e)
+  try {
+    const url = `/api/${form.file}`
+    await axios({
+      method: 'delete',
+      url,
+      headers: {
+        'X-AUTH': form.user
+      }
+    })
   } catch (e) {
     console.error(e)
   }

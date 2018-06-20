@@ -14,6 +14,9 @@ module.exports = async req => {
   }
   const metadata = JSON.parse(metadataRaw)
   await Auth.validateOwner(req.headers['x-auth'], metadata.owner)
+  if (metadata.deletedAt !== null) {
+    throw new Error('file-removed')
+  }
 
   const now = moment().unix()
   const oldFile = new File({

@@ -31,6 +31,11 @@ const errors = {
     id: 14,
     code: 404,
     message: 'This file does not exist'
+  },
+  'file-removed': {
+    id: 15,
+    code: 404,
+    message: 'This file was removed'
   }
 }
 
