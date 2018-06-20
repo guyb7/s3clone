@@ -31,5 +31,9 @@ module.exports = async req => {
   const fileKey = file.getKey()
 
   await RedisClient.delAsync(REDIS_FILE_KEY + oldFileKey)
-  await RedisClient.setAsync(REDIS_FILE_KEY + fileKey, JSON.stringify(file.getMetadata()))
+  const newMetadata = file.getMetadata()
+  await RedisClient.setAsync(REDIS_FILE_KEY + fileKey, JSON.stringify(newMetadata))
+  return {
+    metadata: newMetadata
+  }
 }

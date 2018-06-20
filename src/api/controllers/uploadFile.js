@@ -31,6 +31,6 @@ module.exports = async req => {
   await RedisClient.setAsync(REDIS_FILE_KEY + fileKey, JSON.stringify(file.getMetadata()))
   return {
     id,
-    fileKey
+    url: fileKey
   }
 }

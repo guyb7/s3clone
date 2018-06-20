@@ -32,10 +32,12 @@
         </li>
       </ul>
       <div class="uk-margin">
-        <label class="uk-form-label" for="form-stacked-text">User token</label>
-        <div class="uk-form-controls">
-          <input class="uk-input" type="text" id="user" placeholder="Anonymous">
-        </div>
+        <form class="uk-form-stacked">
+          <label class="uk-form-label" for="form-stacked-text">User token</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" type="text" id="user" placeholder="Anonymous">
+          </div>
+        </form>
       </div>
       <ul class="uk-switcher uk-margin">
         <li>
@@ -123,6 +125,14 @@
           </form>
         </li>
       </ul>
+      <!-- Output -->
+      <div>
+        <h4>Output</h4>
+        <pre class="uk-resize-vertical">
+          <code id="output">
+          </code>
+        </pre>
+      </div>
     </div>
   </body>
 </html>

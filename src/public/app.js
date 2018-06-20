@@ -25,10 +25,14 @@ const uploadEl = document.getElementById('upload')
 uploadEl.addEventListener('submit', async e => {
   e.preventDefault()
   const form = parseForm(e)
+  if (!form.file.file) {
+    return
+  }
   const data = new FormData()
   data.append('file', form.file.file)
   try {
     const url = `/api/${form.user}/${form.file.file.name}?${form.public ? 'public=true' : ''}`
+    clearOutput()
     const res = await axios({
       method: 'post',
       url,
@@ -49,6 +53,7 @@ downloadEl.addEventListener('submit', async e => {
   const form = parseForm(e)
   try {
     const url = `/api/${form.file}`
+    clearOutput()
     const res = await axios({
       method: 'get',
       url,
@@ -73,6 +78,7 @@ metadataEl.addEventListener('submit', async e => {
   const form = parseForm(e)
   try {
     const url = `/api/${form.file}`
+    clearOutput()
     const res = await axios({
       method: 'get',
       url,
@@ -95,6 +101,7 @@ modifyEl.addEventListener('submit', async e => {
   const form = parseForm(e)
   try {
     const url = `/api/${form.file}`
+    clearOutput()
     const res = await axios({
       method: 'put',
       url,
@@ -117,6 +124,7 @@ deleteEl.addEventListener('submit', async e => {
   const form = parseForm(e)
   try {
     const url = `/api/${form.file}`
+    clearOutput()
     const res = await axios({
       method: 'delete',
       url,
@@ -130,10 +138,32 @@ deleteEl.addEventListener('submit', async e => {
   }
 })
 
-const showError = e => {
-  console.error(e)
+const outputEl = document.getElementById('output')
+
+const clearOutput = () => {
+  outputEl.innerHTML = ''
+  outputEl.classList.remove('uk-form-success')
+  outputEl.classList.remove('uk-form-danger')
 }
 
-const showOutput = data => {
-  console.log(data)
+const showError = e => {
+  console.error(e)
+  const res = e.response
+  console.error(res)
+  outputEl.classList.add('uk-form-danger')
+  outputEl.classList.remove('uk-form-success')
+  outputEl.innerHTML = `
+${res.status} ${res.statusText}
+${JSON.stringify(res.data, null, 2)}
+  `
+}
+
+const showOutput = res => {
+  console.log(res)
+  outputEl.classList.add('uk-form-success')
+  outputEl.classList.remove('uk-form-danger')
+  outputEl.innerHTML = `
+${res.status} ${res.statusText}
+${JSON.stringify(res.data, null, 2)}
+  `
 }

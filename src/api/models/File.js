@@ -37,6 +37,7 @@ class File {
       filename: this.filename,
       filesize: this.filesize,
       isPublic: this.isPublic,
+      url: this.getKey(),
       createdAt: this.createdAt,
       modifiedAt: this.modifiedAt,
       deletedAt: this.deletedAt
