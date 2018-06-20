@@ -7,7 +7,6 @@ class File {
     filename,
     filesize,
     isPublic,
-    tempPath,
     createdAt,
     modifiedAt = null,
     deletedAt = null

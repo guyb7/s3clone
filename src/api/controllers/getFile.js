@@ -1,5 +1,6 @@
 const RedisClient = require('../../DB')
 const Storage = require('../../Storage')
+const Auth = require('../models/Auth')
 
 const { REDIS_FILE_KEY } = process.env
 
@@ -11,9 +12,7 @@ module.exports = async req => {
   }
   const metadata = JSON.parse(metadataRaw)
   if (metadata.isPublic !== true) {
-    if (!req.headers['x-auth'] || req.headers['x-auth'] !== metadata.owner) {
-      throw new Error('not-authorized')
-    }
+    await Auth.validateOwner(req.headers['x-auth'], metadata.owner)
   }
   if (req.query.metadata) {
     return {

@@ -14,7 +14,6 @@ module.exports = async req => {
   const id = uuid()
   const now = moment().unix()
   const tempFile = await readFile(req.files.file.path)
-  console.log(req.files.file)
   const file = new File({
     id,
     owner: req.params.bucket,
@@ -23,7 +22,6 @@ module.exports = async req => {
     filename: req.files.file.name,
     filesize: req.files.file.size,
     isPublic: req.query.public === 'true',
-    tempPath: req.files.file.path,
     createdAt: now
   })
   const fileKey = file.getKey()

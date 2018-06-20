@@ -31,7 +31,7 @@ GET /dDFewFG32dz X-AUTH="sjdnfsdFE32ss"
 Update visibility
 ```
 PUT /file/path/file.txt { "private": true }
-PUT /dDFewFG32dz?private=false X-AUTH="sjdnfsdFE32ss"
+PUT /dDFewFG32dz?private=false X-AUTH="sjdnfsdFE32ss" { "private": false }
 ```
 
 Delete a file
@@ -69,3 +69,6 @@ DELETE /file/path/file.txt
 * coupling to Redis, missing abstraction
 * resolve uuid collisions
 * allowing both public/private paths will require data duplication
+* file type detection
+* allow multiple files with the same public path?
+* changing visibility changes URL, which is awkward

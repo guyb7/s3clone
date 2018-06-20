@@ -1,12 +1,4 @@
-/* global axios */
-
-axios.get('/api/status')
-.then(res => {
-  console.log(res.data)
-})
-.catch(err => {
-  console.log(err)
-})
+/* global axios, Blob, FormData */
 
 const parseForm = e => {
   const elements = e.target.querySelectorAll('[name]')
@@ -37,7 +29,7 @@ uploadEl.addEventListener('submit', async e => {
   data.append('file', form.file.file)
   try {
     const url = `/api/${form.user}/${form.file.file.name}?${form.public ? 'public=true' : ''}`
-    const res = await axios.post(url, data)
+    await axios.post(url, data)
   } catch (e) {
     console.error(e)
   }
@@ -62,6 +54,28 @@ downloadEl.addEventListener('submit', async e => {
     link.href = window.URL.createObjectURL(blob)
     link.download = res.headers['x-filename']
     link.click()
+  } catch (e) {
+    console.error(e)
+  }
+})
+
+const modifyEl = document.getElementById('modify')
+modifyEl.addEventListener('submit', async e => {
+  e.preventDefault()
+  const form = parseForm(e)
+  try {
+    const url = `/api/${form.file}`
+    const res = await axios({
+      method: 'put',
+      url,
+      params: {
+        public: form.public
+      },
+      headers: {
+        'X-AUTH': form.user
+      }
+    })
+    console.log(res)
   } catch (e) {
     console.error(e)
   }
